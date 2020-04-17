@@ -33,6 +33,8 @@ void process_image_callback(const sensor_msgs::Image img)
     int row = 0;
     int step = 0;
     int i = 0;
+    int j = 0;
+    int k = 0;
     //ROS_INFO("height: %d, width: %d, step: %d", img.height, img.width, img.step);
     //ROS_INFO("HEIGHT: %f, STEP: %f", img.height, img.step);
     for (row = 0; row < img.height && found_ball == false; row++)
@@ -40,18 +42,16 @@ void process_image_callback(const sensor_msgs::Image img)
         for (step = 0; step < img.step && found_ball == false; ++step)
         {   
             i = (row*img.step)+step;
+	    j = (row*img.step)+step+1;
+	    k = (row*img.step)+step+2;
             //ROS_INFO("row: %d, step: %d, i: %d", row, step, i);
-            if (img.data[i] == white_pixel)
+            if ((img.data[i] == white_pixel)&& (img.data[j]== white_pixel) && (img.data[k] == white_pixel))
             {   
-		count++;
-		if(count ==  3){
+
                 found_ball = true;
-		count = 0;
-		}
-                //ROS_INFO("row: %d, step: %d, i: %d", row, step, i);
-                
+		
             }
-		}
+	}
     }
     if (found_ball)
     {
