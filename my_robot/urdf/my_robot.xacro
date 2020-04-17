@@ -207,5 +207,24 @@
   </joint>
 
 
+
+
+<gazebo reference="chassis">
+  <material>Gazebo/Blue</material>
+</gazebo>
+
+<gazebo reference="camera">
+  <material>Gazebo/Red</material>
+</gazebo>
+
+<gazebo reference="left_front_wheel">
+  <material>Gazebo/Black</material>
+</gazebo>
+
+<gazebo reference="right_front_wheel">
+  <material>Gazebo/Black</material>
+</gazebo>
+
+
 </robot>
 

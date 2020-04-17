@@ -26,6 +26,7 @@ void process_image_callback(const sensor_msgs::Image img)
 {
 
     int white_pixel = 255;
+    int count = 0;
 
     bool found_ball = false;
     // TODO: Loop through each pixel in the image and check if there's a bright white one
@@ -42,7 +43,11 @@ void process_image_callback(const sensor_msgs::Image img)
             //ROS_INFO("row: %d, step: %d, i: %d", row, step, i);
             if (img.data[i] == white_pixel)
             {   
+		count++;
+		if(count ==  3){
                 found_ball = true;
+		count = 0;
+		}
                 //ROS_INFO("row: %d, step: %d, i: %d", row, step, i);
                 
             }
